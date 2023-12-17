@@ -1,0 +1,47 @@
+{% macro show_links(user)%}
+<ul class="nav justify-content-center p-1 ">
+    <li class="nav-item">
+            <a class="nav-link active text-light" aria-current="page" href="#">Doubt Clearing App</a>
+          </li>
+          {%if not user%}
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/login">login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/register">register</a>
+          </li>
+          {%endif%}
+          {%if user%}
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/logout">logout</a>
+            
+          </li>
+          {%endif%}
+        </li>
+        {%if user and  user['admin']==0 and  user['teacher']==0%}
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/askquestion">Ask Question</a>
+        </li>
+        {% endif %}
+        {%if user and  user['teacher']==1%}
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/unansweredquestions">Unanswered Questions</a>
+        </li>
+        {% endif %}
+          {%if user['admin']==1 %}
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/users">Allusers</a>
+            
+          </li>
+          {%endif%}
+          {% if user%}
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#">User : {{user['name']}}</a>
+            
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {%endmacro%}
