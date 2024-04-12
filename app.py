@@ -23,7 +23,7 @@ def index():
     db=getDatabase()
     question_cursor=db.execute("select questions.id,questions.question_text,askers.name as asker_name,questions.answer_text,teachers.name as teacher_name from questions join users as askers on askers.id=questions.asked_by_id join users as teachers on teachers.id =questions.teacher_id where questions.answer_text is not null")
     questions_result=question_cursor.fetchall()
-    return render_template('home.html',user=user,questions=questions_result)
+    return render_template('index.html',user=user,questions=questions_result)
 @app.route('/login',methods=["POST","GET"])
 def login():
     user=get_current_user()
